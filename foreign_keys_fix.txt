@@ -1,0 +1,18 @@
+Adding indexes to referenced columns...
+Index added successfully: ALTER TABLE class ADD INDEX (class_id)
+Index added successfully: ALTER TABLE students ADD INDEX (id)
+Index added successfully: ALTER TABLE subjects ADD INDEX (subject_id)
+Index added successfully: ALTER TABLE teachers ADD INDEX (id)
+
+Attempting to create grades table...
+PHP Fatal error:  Uncaught mysqli_sql_exception: Can't create table `students`.`grades` (errno: 150 "Foreign key constraint is incorrectly formed") in C:\Users\jem\Desktop\codes\sample_output_finals\fix_foreign_keys.php:44
+Stack trace:
+#0 C:\Users\jem\Desktop\codes\sample_output_finals\fix_foreign_keys.php(44): mysqli_query(Object(mysqli), 'CREATE TABLE IF...')
+#1 {main}
+  thrown in C:\Users\jem\Desktop\codes\sample_output_finals\fix_foreign_keys.php on line 44
+
+Fatal error: Uncaught mysqli_sql_exception: Can't create table `students`.`grades` (errno: 150 "Foreign key constraint is incorrectly formed") in C:\Users\jem\Desktop\codes\sample_output_finals\fix_foreign_keys.php:44
+Stack trace:
+#0 C:\Users\jem\Desktop\codes\sample_output_finals\fix_foreign_keys.php(44): mysqli_query(Object(mysqli), 'CREATE TABLE IF...')
+#1 {main}
+  thrown in C:\Users\jem\Desktop\codes\sample_output_finals\fix_foreign_keys.php on line 44
