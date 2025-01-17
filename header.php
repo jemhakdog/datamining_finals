@@ -215,6 +215,7 @@
         <nav class="sidebar">
             <div class="sidebar-header">
                 <h1>School Management System</h1>
+                <p class="text-white-50 mb-0">Welcome to your portal</p>
             </div>
             
             <!-- Navigation Links -->
@@ -251,6 +252,11 @@
                             <i class="bi bi-calendar3"></i> Schedules
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'subject_teachers.php' ? 'active' : '' ?>" href="subject_teachers.php">
+                            <i class="bi bi-person-video3"></i> Subject Teachers
+                        </a>
+                    </li>
                 <?php elseif ($_SESSION['role'] === 'teacher'): ?>
                     <!-- Teacher Navigation -->
                     <li class="nav-item">
@@ -272,17 +278,22 @@
                     <!-- Student Navigation -->
                     <li class="nav-item">
                         <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'student_dashboard.php' ? 'active' : '' ?>" href="student_dashboard.php">
-                            <i class="bi bi-speedometer2"></i> Dashboard
+                            <i class="bi bi-house-door-fill"></i> Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'enrolled_subjects.php' ? 'active' : '' ?>" href="student_dashboard.php#enrolled">
-                            <i class="bi bi-journal-check"></i> My Subjects
+                        <a class="nav-link" href="student_dashboard.php#subjects">
+                            <i class="bi bi-journal-text"></i> My Subjects
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'available_subjects.php' ? 'active' : '' ?>" href="student_dashboard.php#available">
-                            <i class="bi bi-journal-plus"></i> Available Subjects
+                        <a class="nav-link" href="student_dashboard.php#grades">
+                            <i class="bi bi-award"></i> My Grades
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="student_dashboard.php#schedule">
+                            <i class="bi bi-calendar3"></i> My Schedule
                         </a>
                     </li>
                 <?php endif; ?>

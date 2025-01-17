@@ -1,4 +1,4 @@
-<?php
+`   <?php
 session_start();
 require 'dbcon.php';
 
@@ -14,14 +14,12 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']) && $_SESSION['role']
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <div>
-                            <h4 class="mb-0">
-                                <i class="bi bi-journal-text text-primary me-2"></i>
-                                My Subjects
-                            </h4>
-                            <p class="text-muted mb-0 mt-1">Subjects assigned to you</p>
-                        </div>
+                    <div class="card-header">
+                        <h4 class="mb-0">
+                            <i class="bi bi-journal-text text-primary me-2"></i>
+                            My Subjects
+                        </h4>
+                        <p class="text-muted mb-0 mt-1">Subjects assigned to you</p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -31,18 +29,21 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']) && $_SESSION['role']
                                         <th>Subject Name</th>
                                         <th>Units</th>
                                         <th>Course</th>
+                                        <th>Academic Year</th>
+                                        <th>Semester</th>
                                         <th>Enrolled Students</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    // Get subjects for teacher's department
-                                    $subject_query = "SELECT s.*, 
+                                    // Get subjects assigned to this teacher with schedule information
+                                    $subject_query = "SELECT s.*, sch.academic_year, sch.semester,
                                                     (SELECT COUNT(*) FROM class c WHERE c.subject_id = s.subject_id) as student_count
                                                     FROM subjects s 
-                                                    INNER JOIN teachers t ON s.course = t.department 
-                                                    WHERE t.id = $teacher_id";
+                                                    INNER JOIN schedules sch ON s.subject_id = sch.subject_id
+                                                    WHERE sch.teacher_id = $teacher_id
+                                                    ORDER BY sch.academic_year DESC, sch.semester DESC, s.subject_name";
                                     $subject_result = mysqli_query($con, $subject_query);
 
                                     if(mysqli_num_rows($subject_result) > 0) {
@@ -67,6 +68,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']) && $_SESSION['role']
                                                         <?= htmlspecialchars($subject['course']) ?>
                                                     </span>
                                                 </td>
+                                                <td><?= htmlspecialchars($subject['academic_year']) ?></td>
+                                                <td><?= htmlspecialchars($subject['semester']) ?></td>
                                                 <td>
                                                     <span class="badge bg-info">
                                                         <i class="bi bi-people me-1"></i>
@@ -85,7 +88,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']) && $_SESSION['role']
                                     } else {
                                         ?>
                                         <tr>
-                                            <td colspan="5" class="text-center py-4">
+                                            <td colspan="7" class="text-center py-4">
                                                 <i class="bi bi-inbox text-muted d-block mb-2" style="font-size: 2rem;"></i>
                                                 <p class="text-muted mb-0">No subjects assigned yet</p>
                                             </td>

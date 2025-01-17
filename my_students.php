@@ -31,6 +31,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']) && $_SESSION['role']
                                         <th>Student Name</th>
                                         <th>Subject</th>
                                         <th>Course</th>
+                                        <th>Academic Year</th>
+                                        <th>Semester</th>
                                         <th>Email</th>
                                         <th>Phone</th>
                                         <th>Actions</th>
@@ -38,13 +40,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']) && $_SESSION['role']
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $students_query = "SELECT DISTINCT s.*, c.subject_id, sub.subject_name
+                                    $students_query = "SELECT DISTINCT s.*, c.subject_id, sub.subject_name, sch.academic_year, sch.semester
                                                      FROM students s
                                                      INNER JOIN class c ON s.id = c.student_id
                                                      INNER JOIN subjects sub ON c.subject_id = sub.subject_id
-                                                     INNER JOIN teachers t ON sub.course = t.department
-                                                     WHERE t.id = $teacher_id
-                                                     ORDER BY sub.subject_name, s.name";
+                                                     INNER JOIN schedules sch ON sub.subject_id = sch.subject_id
+                                                     WHERE sch.teacher_id = $teacher_id
+                                                     ORDER BY sch.academic_year DESC, sch.semester DESC, sub.subject_name, s.name";
                                     $students_result = mysqli_query($con, $students_query);
 
                                     if(mysqli_num_rows($students_result) > 0) {
@@ -55,9 +57,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']) && $_SESSION['role']
                                                 $current_subject = $student['subject_name'];
                                                 ?>
                                                 <tr class="table-light">
-                                                    <td colspan="6" class="fw-bold">
+                                                    <td colspan="8" class="fw-bold">
                                                         <i class="bi bi-book-fill me-2"></i>
-                                                        <?= htmlspecialchars($student['subject_name']) ?>
+                                                        <?= htmlspecialchars($student['subject_name']) ?> - 
+                                                        <?= htmlspecialchars($student['academic_year']) ?> 
+                                                        (<?= htmlspecialchars($student['semester']) ?>)
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -89,6 +93,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']) && $_SESSION['role']
                                                         <?= htmlspecialchars($student['email']) ?>
                                                     </a>
                                                 </td>
+                                                <td><?= htmlspecialchars($student['academic_year']) ?></td>
+                                                <td><?= htmlspecialchars($student['semester']) ?></td>
                                                 <td>
                                                     <a href="tel:<?= htmlspecialchars($student['phone']) ?>" 
                                                        class="text-decoration-none">
@@ -116,7 +122,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']) && $_SESSION['role']
                                     } else {
                                         ?>
                                         <tr>
-                                            <td colspan="6" class="text-center py-4">
+                                            <td colspan="8" class="text-center py-4">
                                                 <i class="bi bi-inbox text-muted d-block mb-2" style="font-size: 2rem;"></i>
                                                 <p class="text-muted mb-0">No students enrolled in your subjects</p>
                                             </td>
