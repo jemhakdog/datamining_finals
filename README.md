@@ -54,6 +54,26 @@ Follow our detailed [Setup Guide](setup_guide.md) for step-by-step instructions 
 ### Grade Management
 ![Grade Management](CRUDS/Grade-Management.png)
 
+## Releases
+
+The latest version of the School Management System is available in the `releases` directory. Each release includes:
+
+- Complete source code (ZIP archive)
+- Pre-configured database
+- Installation instructions
+- All required files and assets
+
+### Latest Version: v1.0.0 (school-management-system-v1.0.0.zip)
+
+Key features in this release:
+- Complete student management system
+- Teacher and subject management
+- Class scheduling and enrollment
+- Grade management and tracking
+- Automated setup script (run.bat)
+- Comprehensive documentation
+- Screenshot examples
+
 ## Need Help?
 
 Refer to our [Setup Guide](setup_guide.md) for detailed instructions and troubleshooting tips.
