@@ -1,5 +1,6 @@
 <?php
 session_start();
+require 'dbcon.php';
 if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 ?>
 
@@ -18,8 +19,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 <body>
   
     <div class="container mt-5">
-
-        <?php include('message.php'); ?>
 
         <div class="row">
             <div class="col-md-12">
@@ -60,6 +59,27 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="sweet-alert.js"></script>
+    <?php if(isset($_SESSION['message']) && isset($_SESSION['show_swal'])): ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Success!',
+                text: '<?= $_SESSION['message'] ?>',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'teachers.php';
+                }
+            });
+        });
+    </script>
+    <?php
+    unset($_SESSION['message']);
+    unset($_SESSION['show_swal']);
+    endif;
+    ?>
 </body>
 </html>
 <?php 

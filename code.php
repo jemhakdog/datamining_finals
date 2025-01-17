@@ -281,12 +281,14 @@ if(isset($_POST['update_teacher']))
     if($query_run)
     {
         $_SESSION['message'] = "Teacher Updated Successfully";
+        $_SESSION['show_swal'] = true;
         header("Location: teachers.php");
         exit(0);
     }
     else
     {
         $_SESSION['message'] = "Teacher Not Updated";
+        $_SESSION['show_swal'] = true;
         header("Location: teachers.php");
         exit(0);
     }
@@ -307,13 +309,15 @@ if(isset($_POST['save_teacher']))
     if($query_run)
     {
         $_SESSION['message'] = "Teacher Created Successfully";
+        $_SESSION['show_swal'] = true;
         header("Location: teacher-create.php");
         exit(0);
     }
     else
     {
         $_SESSION['message'] = "Teacher Not Created";
-        header("Location: teacher-create.php");
+        $_SESSION['show_swal'] = true;
+        header("Location: teacher-create.php?error=true");
         exit(0);
     }
 }
@@ -331,12 +335,14 @@ if(isset($_POST['delete_subject']))
     if($query_run)
     {
         $_SESSION['message'] = "Subject Deleted Successfully";
+        $_SESSION['show_swal'] = true;
         header("Location: subjects.php");
         exit(0);
     }
     else
     {
         $_SESSION['message'] = "Subject Not Deleted";
+        $_SESSION['show_swal'] = true;
         header("Location: subjects.php");
         exit(0);
     }
@@ -357,12 +363,14 @@ if(isset($_POST['update_subject']))
     if($query_run)
     {
         $_SESSION['message'] = "Subject Updated Successfully";
+        $_SESSION['show_swal'] = true;
         header("Location: subjects.php");
         exit(0);
     }
     else
     {
         $_SESSION['message'] = "Subject Not Updated";
+        $_SESSION['show_swal'] = true;
         header("Location: subjects.php");
         exit(0);
     }
@@ -382,13 +390,15 @@ if(isset($_POST['save_subject']))
     if($query_run)
     {
         $_SESSION['message'] = "Subject Created Successfully";
-        header("Location: subject-create.php");
+        $_SESSION['show_swal'] = true;
+        header("Location: subjects.php");
         exit(0);
     }
     else
     {
         $_SESSION['message'] = "Subject Not Created";
-        header("Location: subject-create.php");
+        $_SESSION['show_swal'] = true;
+        header("Location: subjects.php");
         exit(0);
     }
 }

@@ -9,6 +9,33 @@
          data-type="<?= $type; ?>" 
          style="display: none;"></div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const messageDiv = document.getElementById('sweet-alert-message');
+            if (messageDiv) {
+                const message = messageDiv.getAttribute('data-message');
+                const type = messageDiv.getAttribute('data-type');
+                
+                // Check if SweetAlert2 is loaded
+                const showAlert = function() {
+                    if (typeof Swal !== 'undefined') {
+                        Swal.fire({
+                            title: type === 'success' ? 'Success!' : 'Error!',
+                            text: message,
+                            icon: type,
+                            confirmButtonText: 'OK'
+                        });
+                    } else {
+                        // If SweetAlert2 isn't loaded yet, wait and try again
+                        setTimeout(showAlert, 100);
+                    }
+                };
+                
+                showAlert();
+            }
+        });
+    </script>
+
     <!-- Bootstrap alert (fallback) -->
     <div class="alert alert-<?= ($type === 'success') ? 'success' : 'danger' ?> alert-dismissible fade show" role="alert">
         <strong><?= ($type === 'success') ? 'Success!' : 'Error!' ?></strong> <?= $message; ?>

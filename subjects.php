@@ -5,6 +5,23 @@
         $page_title = "Subject Management";
         include('header.php');
 ?>
+    <script>
+    function confirmDelete(formId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById(formId).submit();
+            }
+        });
+    }
+    </script>
     <div class="container py-4">
         <?php include('message.php'); ?>
 
@@ -71,6 +88,11 @@
                                                                class="btn btn-sm btn-outline-info" 
                                                                title="View Details">
                                                                 <i class="bi bi-eye"></i>
+                                                            </a>
+                                                            <a href="class-view.php?id=<?= $subject['subject_id']; ?>" 
+                                                               class="btn btn-sm btn-outline-primary" 
+                                                               title="Enroll Students">
+                                                                <i class="bi bi-person-plus"></i>
                                                             </a>
                                                             <a href="subject-edit.php?id=<?= $subject['subject_id']; ?>" 
                                                                class="btn btn-sm btn-outline-success" 

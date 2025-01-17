@@ -23,8 +23,8 @@
                             <a href="enroll_all_students.php" class="btn btn-success me-2">
                                 <i class="bi bi-people-fill"></i> Enroll All Students
                             </a>
-                            <a href="class-view.php" class="btn btn-primary">
-                                <i class="bi bi-person-plus-fill"></i> Enroll Student
+                            <a href="subjects.php" class="btn btn-primary">
+                                <i class="bi bi-person-plus-fill"></i> Enroll Student in Subject
                             </a>
                         </div>
                     </div>
@@ -105,8 +105,8 @@
                                                 <td colspan="6" class="text-center py-4">
                                                     <i class="bi bi-inbox text-muted d-block mb-2" style="font-size: 2rem;"></i>
                                                     <p class="text-muted mb-0">No enrollments found</p>
-                                                    <a href="class-view.php" class="btn btn-sm btn-outline-primary mt-2">
-                                                        <i class="bi bi-person-plus"></i> Enroll Students
+                                                    <a href="subjects.php" class="btn btn-sm btn-outline-primary mt-2">
+                                                        <i class="bi bi-person-plus"></i> Enroll Students in Subject
                                                     </a>
                                                 </td>
                                             </tr>

@@ -132,7 +132,7 @@ include('header.php');
                             </thead>
                             <tbody>
                                 <?php 
-                                    $query = "SELECT * FROM students";
+                                    $query = "SELECT * FROM students WHERE id NOT IN (SELECT student_id FROM class WHERE subject_id = '$subject_id')";
                                     $query_run = mysqli_query($con, $query);
 
                                     if(mysqli_num_rows($query_run) > 0)
