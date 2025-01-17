@@ -146,6 +146,15 @@ session_destroy();
                                 </div>
                             </div>
                         </div>
+
+                        <div class="role-info mt-4">
+                            <h5><i class="bi bi-people-fill me-1"></i>Project Members</h5>
+                            <p>Member 1 Jem Carlo Austria<br>
+                            Member 2 Maryjane Dalas<br>
+                            Member 3 Trisha Billones<br>
+                            Member 4 Erika Mae Tamondong<br>
+                            Member 5 Joy Deguzman</p>
+                        </div>
                     </div>
                 </div>
             </div>

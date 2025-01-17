@@ -1,8 +1,0 @@
-Database connection successful
-
-Tables in database:
-- class
-- students
-- subjects
-- teachers
-- users
